@@ -3,20 +3,21 @@
  * @param {number} target
  * @return {number}
  */
-const search = (nums, target) => {
-    let low     = 0;
-    let high    = nums.length -1;
-    let mid;
+var search = function(nums, target) {
+    let left = 0;
+    let right = nums.length - 1;
     
-    while(low <= high){
-         mid = low + Math.floor((high-low)/2)
-        console.log(nums[mid])
+    while(left <= right){
+        let mid
+        mid = left + Math.floor((right-left) /2)
+        
         if(nums[mid] === target) return mid;
         
-        if(target < nums[mid]) high = mid-1;
-        else{
-            low = mid+1;
+        if(nums[mid] > target){
+            right = mid-1;
+        }else{
+            left = mid+1;
         }
     }
-    return -1;
+    return -1
 };
