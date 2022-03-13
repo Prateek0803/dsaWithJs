@@ -4,19 +4,18 @@
  * @return {number}
  */
 var searchInsert = function(nums, target) {
-    let min =0;
-let max = nums.length - 1;
-let pivot = 0;
-
+    let min = 0,max = nums.length-1;
+    let pivot;
+    
     while(min <= max){
-        pivot = Math.trunc((max-min)/2) + min;
+        pivot = min + Math.floor((max-min)/2);
         
-        if(nums[pivot] === target) return pivot;
+        if(nums[pivot] === target) return pivot
         
-        if(nums[pivot]<target)
+        if(nums[pivot] > target) max = pivot-1
+        else{
             min = pivot+1;
-        else
-            max = pivot-1;
+        }
     }
-    return min
+    return min;
 };
