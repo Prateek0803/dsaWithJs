@@ -3,24 +3,29 @@
  * @return {number[]}
  */
 var sortedSquares = function(nums) {
-    const arr   =  new Array(nums.length).fill(0)
-    let arrIdx  =  arr.length - 1;
     
-    let left    = 0;
-    let right   = nums.length - 1;
+    const ans = new Array(nums.length).fill(0)
     
-    while(arrIdx > -1){
-        if( Math.abs(nums[left]) > Math.abs(nums[right]) ){
-            arr[arrIdx] = nums[left] * nums[left]
-            
-            left++
-            arrIdx--
+    let ansIdx = ans.length - 1;
+    
+    let i = 0, j = nums.length-1
+    
+    while(ansIdx > -1){
+        if(Math.abs(nums[i]) > Math.abs(nums[j])){
+            ans[ansIdx] = nums[i] * nums[i]
+            i++
+            ansIdx --
+        }else if(Math.abs(nums[i] === Math.abs(nums[j]))){
+            ans[ansIdx] = nums[i] * nums[i]
+            i++
+            j--
+            ansIdx--
         }else{
-            
-            arr[arrIdx] = nums[right] * nums[right];
-            right--
-            arrIdx--
+            ans[ansIdx] = nums[j] * nums[j]
+            j--
+            ansIdx--
         }
     }
-    return arr;
+    return ans
+    
 };
