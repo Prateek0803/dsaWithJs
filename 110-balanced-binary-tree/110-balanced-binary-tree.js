@@ -1,21 +1,16 @@
 var isBalanced = function(root) {
-    try{
-        traverse(root,0)
-    }catch(e){
-        return false
+     let result = true;
+    
+    function dfs(root) {
+        if (root === null) return 0;
+        
+        let left = dfs(root.left);
+        let right = dfs(root.right);
+        if(Math.abs(left-right) > 1) result = false;
+        return Math.max(left, right) + 1;
     }
     
-    return true;
+    dfs(root);
+    
+    return result;
 };
-
-
-const traverse = (node,depth) =>{
-    if(!node) return depth;
-    
-    let left  = traverse(node.left, depth + 1)
-    let right = traverse(node.right, depth + 1)
-    
-    if(Math.abs(left-right) > 1) throw "Not Balanced"
-    
-    return Math.max(left,right)
-}
